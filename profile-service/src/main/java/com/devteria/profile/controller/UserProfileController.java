@@ -19,6 +19,7 @@ public class UserProfileController {
 
     @PostMapping
     UserProfileResponse createProfile(@RequestBody ProfileCreationRequest request) {
+        log.info("request: {}", request);
         return userProfileService.createProfile(request);
     }
 
