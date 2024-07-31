@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Slf4j
-@RequestMapping("/users")
-public class UserProfileController {
+@RequestMapping("/internal/users")
+public class InternalUserProfileController {
     IUserProfileService userProfileService;
 
-    @GetMapping("/{profileId}")
-    UserProfileResponse getProfile(@PathVariable String profileId) {
-        return userProfileService.getProfile(profileId);
+    @PostMapping
+    UserProfileResponse createProfile(@RequestBody ProfileCreationRequest request) {
+        log.info("request: {}", request);
+        return userProfileService.createProfile(request);
     }
 
 }
