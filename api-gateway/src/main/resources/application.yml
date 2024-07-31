@@ -1,0 +1,31 @@
+server:
+  port: 8888
+
+app:
+  api-prefix: /api/v1
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: identity_service #dat de biet thoi
+          uri: http://localhost:8080 #link toi service
+          predicates: #dieu kien de vao service
+            - Path=${app.api-prefix}/identity/**
+          filters:
+            - StripPrefix=2
+        - id: profile_service
+          uri: http://localhost:8081
+          predicates:
+            - Path=${app.api-prefix}/profile/** # chúng ta request v?i /api tr??c nó van routing duojc boi vi ta da bo di /api o phan filter.
+          filters:
+            - StripPrefix=2
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+
+
+
