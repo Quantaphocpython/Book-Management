@@ -10,16 +10,16 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: identity_service #dat de biet thoi
+        - id: identity_service
           uri: http://localhost:8080 #link toi service
-          predicates: #dieu kien de vao service
+          predicates:
             - Path=${app.api-prefix}/identity/**
           filters:
             - StripPrefix=2
         - id: profile_service
           uri: http://localhost:8081
           predicates:
-            - Path=${app.api-prefix}/profile/** # chúng ta request v?i /api tr??c nó van routing duojc boi vi ta da bo di /api o phan filter.
+            - Path=${app.api-prefix}/profile/**
           filters:
             - StripPrefix=2
 
