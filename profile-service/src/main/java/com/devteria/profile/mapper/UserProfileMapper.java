@@ -9,4 +9,6 @@ import org.mapstruct.Mapper;
 public interface UserProfileMapper {
     UserProfile toUserProfile(ProfileCreationRequest request);
     UserProfileResponse toUserResponse(UserProfile userProfile);
+
+    UserProfileResponse toUserProfileResponse(UserProfile userProfile);
 }
