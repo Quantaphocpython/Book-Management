@@ -1,13 +1,15 @@
 package com.devteria.profile.controller;
 
+import org.springframework.web.bind.annotation.*;
+
 import com.devteria.profile.dto.request.ProfileCreationRequest;
 import com.devteria.profile.dto.response.UserProfileResponse;
 import com.devteria.profile.service.IUserProfileService;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,5 +24,4 @@ public class InternalUserProfileController {
         log.info("request: {}", request);
         return userProfileService.createProfile(request);
     }
-
 }

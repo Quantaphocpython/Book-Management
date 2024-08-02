@@ -1,16 +1,19 @@
 package com.devteria.profile.exception;
 
-import com.devteria.profile.dto.response.ApiResponse;
+import java.util.Map;
+import java.util.Objects;
+
 import jakarta.validation.ConstraintViolation;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.util.Map;
-import java.util.Objects;
+import com.devteria.profile.dto.response.ApiResponse;
+
+import lombok.extern.slf4j.Slf4j;
 
 @ControllerAdvice
 @Slf4j
@@ -49,7 +52,7 @@ public class GlobalExceptionHandler {
                         .code(errorCode.getCode())
                         .message(errorCode.getMessage())
                         .build());
-}
+    }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     ResponseEntity<ApiResponse> handlingValidation(MethodArgumentNotValidException exception) {
@@ -64,7 +67,6 @@ public class GlobalExceptionHandler {
                     exception.getBindingResult().getAllErrors().getFirst().unwrap(ConstraintViolation.class);
 
             attributes = constraintViolation.getConstraintDescriptor().getAttributes();
-
 
         } catch (IllegalArgumentException e) {
 
