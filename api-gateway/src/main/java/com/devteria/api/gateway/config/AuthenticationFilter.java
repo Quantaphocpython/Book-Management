@@ -35,7 +35,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
     ObjectMapper objectMapper;
 
     @NonFinal
-    String[] publicEndpoints = {"/identity/auth/token"};
+    String[] publicEndpoints = {"/identity/auth/.*", "/identity/users/registration"};
 
     @Value("${app.api-prefix}")
     @NonFinal
@@ -71,7 +71,8 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
     }
 
     private boolean isPublicEndpoints(ServerHttpRequest request) {
-        return Arrays.stream(publicEndpoints).anyMatch(s -> request.getURI().getPath().matches(s));
+        log.info(request.getURI().getPath());
+        return Arrays.stream(publicEndpoints).anyMatch(s -> request.getURI().getPath().matches(apiPrefix + s));
     }
 
     Mono<Void> unauthenticated(ServerHttpResponse response) {
