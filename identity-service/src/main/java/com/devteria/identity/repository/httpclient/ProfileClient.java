@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
         configuration = {AuthenticationRequestInterceptor.class})
 // them thuoc tinh config de them header Authorization cho cac request, co the co nhieu class interceptor
 public interface ProfileClient {
+
     @PostMapping(value = "/internal/users", produces = MediaType.APPLICATION_JSON_VALUE)
     UserProfileResponse createProfile(@RequestBody ProfileCreationRequest request); // truyền header chứa token cho profile-service nhằm thuực hiện authorize
 }
