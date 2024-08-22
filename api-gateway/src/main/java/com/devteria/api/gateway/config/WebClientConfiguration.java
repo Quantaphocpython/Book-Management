@@ -32,6 +32,7 @@ public class WebClientConfiguration {
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", configuration);
 
 
+
         return new CorsWebFilter(urlBasedCorsConfigurationSource);
     }
 
