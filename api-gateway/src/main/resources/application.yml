@@ -20,6 +20,10 @@ spring:
           uri: http://localhost:8081
           predicates:
             - Path=${app.api-prefix}/profile/**
+        - id: notification_service
+          uri: http://localhost:8082
+          predicates:
+            - Path=${app.api-prefix}/notification/**
           filters:
             - StripPrefix=2
 
