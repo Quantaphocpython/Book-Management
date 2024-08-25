@@ -35,7 +35,11 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
     ObjectMapper objectMapper;
 
     @NonFinal
-    String[] publicEndpoints = {"/identity/auth/.*", "/identity/users/registration"};
+    String[] publicEndpoints = {
+            "/identity/auth/.*",
+            "/identity/users/registration",
+            "/notification/email/send"
+    };
 
     @Value("${app.api-prefix}")
     @NonFinal
@@ -45,7 +49,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         log.info("Enter Global Filler...");
 
-        if(isPublicEndpoints(exchange.getRequest()))
+        if (isPublicEndpoints(exchange.getRequest()))
             return chain.filter(exchange);
 
         // Get token from Authorization header
@@ -58,7 +62,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
 
         //verify token
         return identityService.introspect(token).flatMap(introspectResponseApiResponse -> {
-            if( introspectResponseApiResponse.getResult().isValid())
+            if (introspectResponseApiResponse.getResult().isValid())
                 return chain.filter(exchange);
             else
                 return unauthenticated(exchange.getResponse());
