@@ -1,6 +1,6 @@
 package com.devteria.api.notification.exception;
 
-import com.devteria.profile.dto.response.ApiResponse;
+import com.devteria.api.notification.dto.response.ApiResponse;
 import jakarta.validation.ConstraintViolation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

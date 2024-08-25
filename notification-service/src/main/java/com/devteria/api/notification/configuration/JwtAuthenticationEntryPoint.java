@@ -1,7 +1,7 @@
 package com.devteria.api.notification.configuration;
 
-import com.devteria.profile.dto.response.ApiResponse;
-import com.devteria.profile.exception.ErrorCode;
+import com.devteria.api.notification.dto.response.ApiResponse;
+import com.devteria.api.notification.exception.ErrorCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
