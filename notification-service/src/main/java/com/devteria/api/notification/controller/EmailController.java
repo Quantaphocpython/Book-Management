@@ -8,6 +8,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,5 +28,10 @@ public class EmailController {
                 .build();
         log.info("Response: {}", res);
         return res;
+    }
+
+    @KafkaListener(topics = "onboard-successful")
+    public void listen(String message) { // khi co message toi no se map message vao bien message
+        log.info("Message received: {}", message);
     }
 }
