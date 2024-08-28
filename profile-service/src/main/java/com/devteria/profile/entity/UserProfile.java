@@ -23,8 +23,11 @@ public class UserProfile {
     @GeneratedValue(generatorClass = UUIDStringGenerator.class)
     String id;
 
-    @Property("userId") // tuong ung voi @Column trong mysql
+    @Property("userId")
     String userId;
+
+    String username;
+    String email;
 
     String firstName;
     String lastName;

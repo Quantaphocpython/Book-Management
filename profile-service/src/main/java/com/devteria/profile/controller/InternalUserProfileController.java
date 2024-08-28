@@ -1,5 +1,6 @@
 package com.devteria.profile.controller;
 
+import com.devteria.profile.dto.response.ApiResponse;
 import org.springframework.web.bind.annotation.*;
 
 import com.devteria.profile.dto.request.ProfileCreationRequest;
@@ -15,13 +16,13 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Slf4j
-@RequestMapping("/internal/users")
 public class InternalUserProfileController {
     IUserProfileService userProfileService;
 
-    @PostMapping
-    UserProfileResponse createProfile(@RequestBody ProfileCreationRequest request) {
-        log.info("request: {}", request);
-        return userProfileService.createProfile(request);
+    @PostMapping("/internal/users")
+    ApiResponse<UserProfileResponse> createProfile(@RequestBody ProfileCreationRequest request) {
+        return ApiResponse.<UserProfileResponse>builder()
+                .result(userProfileService.createProfile(request))
+                .build();
     }
 }
