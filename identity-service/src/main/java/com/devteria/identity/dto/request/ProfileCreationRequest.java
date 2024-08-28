@@ -1,10 +1,9 @@
 package com.devteria.identity.dto.request;
 
-import com.devteria.identity.validator.DobConstraint;
+import java.time.LocalDate;
+
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -13,11 +12,10 @@ import java.time.LocalDate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProfileCreationRequest {
     String userId;
+    String username;
+    String email;
     String firstName;
     String lastName;
-
-    @DobConstraint(min = 10, message = "INVALID_DOB")
     LocalDate dob;
-
     String city;
 }

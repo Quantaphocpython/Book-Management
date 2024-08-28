@@ -1,8 +1,7 @@
 package com.devteria.identity.configuration;
 
-import com.devteria.identity.service.AuthenticationService;
-import com.nimbusds.jwt.JWTClaimsSet;
-import com.nimbusds.jwt.SignedJWT;
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
@@ -10,7 +9,9 @@ import org.springframework.security.oauth2.jwt.JwtException;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.stereotype.Component;
 
-import java.text.ParseException;
+import com.devteria.identity.service.AuthenticationService;
+import com.nimbusds.jwt.JWTClaimsSet;
+import com.nimbusds.jwt.SignedJWT;
 
 @Component
 public class CustomJwtDecoder implements JwtDecoder {
@@ -35,8 +36,7 @@ public class CustomJwtDecoder implements JwtDecoder {
                     jwtClaimsSet.getIssueTime().toInstant(),
                     jwtClaimsSet.getExpirationTime().toInstant(),
                     signedJWT.getHeader().toJSONObject(),
-                    jwtClaimsSet.getClaims()
-            );
+                    jwtClaimsSet.getClaims());
         } catch (ParseException e) {
             throw new JwtException("Invalid token");
         }
