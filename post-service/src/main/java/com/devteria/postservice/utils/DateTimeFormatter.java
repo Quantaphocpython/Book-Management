@@ -12,9 +12,9 @@ import java.util.function.Function;
 
 @Component
 public class DateTimeFormatter {
-    Map<Long, Function<Instant, String>> strategyMap = new LinkedHashMap<>(
-            60,
-    );
+//    Map<Long, Function<Instant, String>> strategyMap = new LinkedHashMap<>(
+//            60,
+//    );
 
     public String format(Instant instant) {
         long elapseSeconds = ChronoUnit.SECONDS.between(instant, Instant.now());
