@@ -2,7 +2,6 @@ package com.devteria.postservice.service;
 
 import java.time.Instant;
 
-import com.devteria.postservice.utils.DateTimeFormatter;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -16,6 +15,7 @@ import com.devteria.postservice.dto.response.PostResponse;
 import com.devteria.postservice.entity.Post;
 import com.devteria.postservice.mapper.PostMapper;
 import com.devteria.postservice.repository.PostRepository;
+import com.devteria.postservice.utils.DateTimeFormatter;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
